@@ -1,0 +1,46 @@
+﻿@model MVC_Music_Store_Identity.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="position-fixed">
+    @{Html.RenderAction("GenreMenu", "Store");}
+</div>
+
+<section class="container py-5">
+
+    <h2>Detalle del produco</h2>
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Model.AlbumArtUrl" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">Código producto: @Model.AlbumId</div>
+                <h1 class="display-5 fw-bolder">
+                    @Model.Title
+                </h1>
+                <div class="fs-5 mb-1">
+                    <span> @Html.DisplayFor(model => model.Artist.Name)</span>
+                </div>
+                <div class="fs-5 mb-5">
+                    <span>
+                        @Html.DisplayFor(model => model.Genre.Name)
+                    </span>
+                </div>
+
+                <div class="fs-5 mb-5">
+                    <span>$@Model.Price</span>
+                </div>
+
+               <div class="d-flex">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        
+                        @Html.ActionLink("Agregar al carrito", "AddToCart",
+                          "ShoppingCart", new { id = Model.AlbumId }, new { @class = "nav-link" })
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,37 @@
+﻿@model MVC_Music_Store_Identity.Models.Genre
+
+@{
+    ViewBag.Title = "Browse";
+}
+
+
+<div class="position-fixed navbar-toggleable-l  h-100">
+    @{Html.RenderAction("GenreMenu", "Store");}
+</div>
+<section class="container py-5">
+
+
+    <h2>@Model.Name</h2>
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-4 row-cols-xl-5 justify-content-center">
+            @foreach (var album in Model.Albums)
+            {
+
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="@album.AlbumArtUrl" alt="..." />
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder">@album.Title</h5>
+                                $ @album.Price
+                            </div>
+                        </div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="@Url.Action("Details", "Store", new { id = album.AlbumId })">Ver detalles</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

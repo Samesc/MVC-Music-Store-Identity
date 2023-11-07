@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!-- Header-->
+<header class="bg-dark py-5 header-cover">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Rhythm Revival</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">Descubre la mejor selección de álbumes de música en nuestra tienda online, donde encontrarás los últimos lanzamientos, clásicos atemporales y ediciones especiales para los amantes de la música</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                       <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/Store/Browse?genre=Rock">Explorar </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="~/Content/cover.jpg" alt="..." /></div>
+        </div>
+    </div>
+</header>
+
+<!-- Blog preview section-->
+<section class="container py-5">
+    <div class="row gx-5">
+        @foreach (var album in Model)
+        {
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="@album.AlbumArtUrl" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Más vendido</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="@Url.Action("Details", "Store", new { id = album.AlbumId })"><h5 class="card-title mb-3">@album.Title</h5></a>
+
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="small">
+                                    <div class="text-muted">$ @album.Price</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
